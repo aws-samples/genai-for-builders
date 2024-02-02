@@ -1,7 +1,3 @@
----
-title: "Generative AI for Builders on Amazon SageMaker"
-weight: 0
----
 
 ## Overview
 
