@@ -1,93 +1,52 @@
-# genai-for-builders
+---
+title: "Generative AI for Builders on Amazon SageMaker"
+weight: 0
+---
 
+## Overview
 
+The purpose of this document is to outline the desired state of key customer journeys for builders looking to leverage Generative AI models on SageMaker. The builders we are targeting are the traditional persona served by SageMaker, Data Scientists and ML Engineers. However, the Jobs-to-be-Done (JTBD) are different from the traditional JTBD of SageMaker, namely Prepare, Build, Train and Deploy. These JTBD are still relevant for predictive AI customers, as well as model producers of Generative AI models, who build their own model from scratch. However, this document focused on Generative AI model consumers, who we believe will form a large and growing part of the customer base of SageMaker. These customers use pre-built Generative AI models vs building these models themselves from scratch. The JTBD of Data Scientists and ML Engineers for these customers can be summarized into 2 pillars.
 
-## Getting started
+ ![](/static/pillars.png) 
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+**Pillar 1**: Enterprise grade Generative AI Model Hub with complete toolset for model consumers (Data Scientists and MLEs) JTBD: Filter/Search => Evaluate and Select => Customize => Deploy. The JTBD in this pillar are covered in Journeys 1, 3, 4, and 6 of this document and corresponding parts of Appendix A for roadmap.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+**Pillar 2**: Industrialize end-to-end Generative AI model deployment JTBD: a/MLOps orchestration of jobs in Pillar 1 (Journey 5) b/Monitoring of inputs and outputs of deployed models (Journey 2) c/Experiment on Evaluate + Customize (Journey 4.5). 
 
-## Add your files
+## Workshop Scenario ##
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Naxt Corp. is a large financial services institution. Naxt wants to be the industry leader in driving innovative changes in process through technology, and to that end, they want to leverage Generative AI in all of their processes. They have previously done a PoC of using Generative AI models for a few use cases using OpenAI and Anthropic models and Langchain (please note, this journey was outside of SageMaker, likely using OpenAI or Plato. Consider this Journey 0 and in future we will evaluate whether to extend SageMaker capabilities to enable this journey). Based on the PoC, they have identified 2 business problems which they will target with Generative AI initially, and they want to use the “cheapest model that gets the job done effectively.” Being a large financial services institution, they are only allowed to use enterprise grade software and models. The first use case is summarizing all past conversations with High Net Worth (HNW) individuals to provide to Investment Advisors, who can then utilize these to rapidly shortlist HNW individuals to reach out to, and easily come up to speed on past interactions with them. The second use case is to build a chatbot using Generative AI models that can answer questions about internal processes like ordering a laptop, or getting an office space allocated accurately (and politely, keeping a professional tone that is representative of communications within Naxt Corp.).
 
-```
-cd existing_repo
-git remote add origin https://gitlab.aws.dev/jagdsoni/genai-for-builders.git
-git branch -M main
-git push -uf origin main
-```
+## Personas: Data Scientist, ML Engineer ##
 
-## Integrate with your tools
+ **Kaitlin** is an experienced, mid-career data scientist who has specialized specifically on large language models (LLMs) and Computer Vision (CV) use cases. She works for Naxt Corp., a large financial services institution, and as part of her job, she regularly uses AWS services. At present she has been tasked with helping optimize some of the current processes at Naxt using Generative AI, and she had led the PoC process for evaluating which tasks/processes can benefit from Generative AI. She has also been asked to be frugal, and given limited resources for this project which includes herself and an ML Engineer (MLE). Hence building a foundational model (FM) from scratch is out of question. Instead, she plans to use one of the existing FMs available in various model hubs. At the same time, she is a builder, and Naxt is a company of builders, who prefer to have some control to set up and configure infrastructure optimized performance and cost. Having said that, with the support of only one MLE, she does not have the bandwidth to manage the infrastructure on an ongoing basis. She searched for model repositories, and landed at the Hugging Face website. Her company’s strict enterprise security and compliance requirements prevent her from using open-source model hubs or platforms. From Hugging Face, she was routed to Amazon SageMaker Jumpstart Model Hub for an enterprise grade Generative AI model hub and asked to log in with her AWS credentials. Being an AWS service, it met all her criteria for security and compliance, and she can see that Jumpstart has a large collection of Generative AI models she plans to try out for her use case. She has played around with SageMaker Studio before and has Domains set up, and can navigate to SageMaker Jumpstart model hub right away. However, before picking SageMaker as the platform of choice, she consults with her MLE Brandon, who is responsible for deploying and maintaining any AI/ML based solution.
 
-- [ ] [Set up project integrations](https://gitlab.aws.dev/jagdsoni/genai-for-builders/-/settings/integrations)
+ **Brandon** is an experienced ML engineer who has deployed popular open-source tools and built custom tooling where needed to automate the entire machine learning lifecycle in the past. While he has basic knowledge of ML concepts, his focus is on packaging and deploying models for development and production. In addition, he builds and maintains the infrastructure and tools to do so. He has a good understanding of what it takes to operationalize a system for production use cases. He’s familiar with Python, Java, and Go. He has setup CI/CD pipelines using Git and Jenkins in the past. He interfaces with application software developers who in turn build ML powered applications that rely on the models he deploys. In previous projects he has worked with a range of AWS services in the past, including S3, Lambda, and EC2. As a result, he has experience using AWS tooling for setting up automated deployments such as Service Quotas, CloudFormation and Cloud Development Kit. Brandon also has extensive experience deploying ML workflows, including selecting the right instance type to host models. Brandon has previously used SageMaker and likes its ease of use and is ready to get started when Kaitlin comes to him with the idea of exploring SageMaker as an option to pick a model and use it.
 
-## Collaborate with your team
+ ## Key Customer Journeys ##
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+ Each of these journeys below correspond to one or more Jobs-to-be-Done (JTBD) of the 3 pillars for Generative AI model consumers referred earlier in this section. There are other journeys in the Generative AI domain, like that of an application developer or that of a model producer which we do not cover in this workshop.
 
-## Test and Deploy
+- **Journey 1 - Filter and Deploy: Come to Jumpstart => Filter/Search for Model => Deploy to Inference:** This journey is effectively two journeys corresponding to two JTBD, 1/ Filter/Search and 2/ Deploy. We have merged the two into a single journey because there are circumstances where customers have a strong idea of which model they want, and do not go through Evaluate and Customize phases (Journey 3 and 4) before they Deploy the model. This journey reflects such a situation.
 
-Use the built-in continuous integration in GitLab.
+- **Journey 2 - Monitor: Come to Jumpstart => Filter/Search => Deploy to Inference => Monitor Outputs:** This journey is additive to Journey 1 above and corresponds the JTBD of Monitor in Pillar 2.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- **Journey 3 - Evaluate and Select: Come to JumpStart => Evaluate and Select Model (Margaret) => [If model meets all criteria => Deploy to Inference => Monitor Outputs (Journey 1 and 2)] => [If not => Customize (Journey 4)]:** Journey 3 focuses on rigorous evaluation and selection process for models in Jumpstart using SageMaker Clarify Model Evaluation, and corresponds to the JTBD of Evaluate and Select in Pillar 1. SageMaker Clarify Model Evaluation deploys Inference endpoints automatically as part of an evaluation job. After Journey 3 completes, Kaitlin will use Journey 1 to deploy the model if the model passes her evaluation criteria. If it does not pass then Kaitlin will use Journey 4 described later in this document for customization.
 
-***
+- **Journey 4 - Customize (Fine-tune): Come to Jumpstart => Evaluate and Select Model \[Margaret\] => Fine Tune => Evaluate  Model \[Margaret\] => Deploy to Inference => Monitor Outputs:** Journey 4 focuses on fine-tuning of models in Jumpstart, and corresponds to the JTBD of Customize in Pillar 1.
 
-# Editing this README
+- **Journey 5 - Orchestrate with MLOps: Come to Jumpstart => Evaluate models and Select model [Margaret]=> Fine Tune [Training] => Deploy in Inference [Inference] => Monitor Outputs [SageMaker Model Monitor] => Automate with MLOps:** This journey is about automating Journey 1-4 with MLOps and corresponds to JTBD of MLOps orchestration in Pillar 2.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+- **Journey 6 - Collect HIL data for Customization: Come to Jumpstart => Evaluate models and Select model => Collect additional data for Instruction Tuning [HIL] => Fine Tune => Evaluate => Deploy Model => Monitor Outputs:** This journey focuses on the Human in Loop (HIL) data collection for Instruction Tuning, which is the term used for fine tuning Generative AI models with human input and feedback. Today, the most commonly used Instruction Tuning techniques for Generative AI models are Supervised Fine Tuning (SFT) and Reinforcement Learning with Human Feedback (RLHF). In this journey we focus on SFT. This journey corresponds to JTBD of Customization providing workflows and workforce for HIL data collection for fine tuning
 
-## Suggestions for a good README
+## Cost
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+By preforming evaluation jobs on models in your account, you will incur costs based on the type of job, model, and instance type selected. If you are running a model on an instance, this model will continue to incur cost as long as it is active.
 
-## Name
-Choose a self-explaining name for your project.
+## Duration
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+2 hours.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## Cleanup
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Make sure to turn off any model instances you have created during this lab in order to not incur unnecessary cost.
