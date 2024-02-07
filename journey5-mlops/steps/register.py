@@ -63,15 +63,13 @@ def register(model_list, output_data_path, model_package_group_name, model_packa
                 create_model_package_group_response["ModelPackageGroupArn"]
             )
         )
-
         
     # Register Model
-    model_id = model["model_id"]
-    model_version = model["model_version"]
+    model_id = best_model["model_id"]
+    model_version = best_model["model_version"]
 
     if "is_finetuned_model" in model:
-        training_job_name = model["training_job_name"]
-        model_id = model["model_id"]
+        training_job_name = best_model["training_job_name"]
 
         estimator = JumpStartEstimator.attach(training_job_name, model_id=model_id)
         model_package = estimator.register(

@@ -29,8 +29,8 @@ def evaluation(model_id, model_version, model_name, preprocess_step_ret, deploy_
         dataset_name="dataset",
         dataset_uri="dataset.jsonl",
         dataset_mime_type=MIME_TYPE_JSONLINES,
-        model_input_location="question",    #TODO: to be aligned with final dataset
-        target_output_location="answer",
+        model_input_location="model_input",
+        target_output_location="target_output",
     )
 
     # Create a JumpStartModelRunner that will be used by FMEval library to perform the call to the model 
@@ -49,7 +49,7 @@ def evaluation(model_id, model_version, model_name, preprocess_step_ret, deploy_
     eval_output = eval_algo.evaluate(
         model=js_model_runner,
         dataset_config=config,
-        prompt_template="$feature",    #TODO to be aligned with the final dataset
+        prompt_template="$feature",
         save=True,
     )
     eval_output_all.append(eval_output)
