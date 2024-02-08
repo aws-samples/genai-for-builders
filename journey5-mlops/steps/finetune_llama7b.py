@@ -9,11 +9,11 @@ def finetune_llama7b(model):
     endpoint_name = model["endpoint_name"]
     instance_type = model["finetune_instance_type"]
     num_instances = model["finetune_num_instances"]
-    epoch = model["epoch"],
+    epoch = model["epoch"]
     max_input_length = model["max_input_length"]
     per_device_train_batch_size = model["per_device_train_batch_size"]
     instruction_tuned = model["instruction_tuned"]
-    chat_dataset = model["chat_dataset"],
+    chat_dataset = model["chat_dataset"]
     train_data_path = model["training_data_path"]
     training_job_name = model["training_job_name"]
 
