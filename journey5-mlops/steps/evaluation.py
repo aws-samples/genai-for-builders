@@ -1,12 +1,10 @@
 import boto3
 import markdown
 from sagemaker.s3_utils import parse_s3_url
-
 from fmeval.data_loaders.data_config import DataConfig
 from fmeval.reporting.eval_output_cells import EvalOutputCell
 from fmeval.constants import MIME_TYPE_JSONLINES
 from fmeval.model_runners.sm_jumpstart_model_runner import JumpStartModelRunner
-
 from fmeval.eval_algorithms.factual_knowledge import FactualKnowledge, FactualKnowledgeConfig
 
 

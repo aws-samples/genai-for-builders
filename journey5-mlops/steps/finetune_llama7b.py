@@ -1,6 +1,6 @@
 from steps.utils import endpoint_exists
-
 from sagemaker.jumpstart.estimator import JumpStartEstimator
+
 
 def finetune_llama7b(model):
 
@@ -21,8 +21,6 @@ def finetune_llama7b(model):
         print("Endpoint already exists")
         training_job_name = None
     else:
-        # validation_data_path = model_fine_tuning_config["validation_data_path"] # Not used
-
         estimator = JumpStartEstimator(
             model_id=model_id,
             model_version=model_version,

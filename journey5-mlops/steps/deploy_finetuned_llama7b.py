@@ -1,7 +1,7 @@
 import sagemaker
 from sagemaker.jumpstart.estimator import JumpStartEstimator
-
 from steps.utils import endpoint_exists
+
 
 def deploy_finetuned_llama7b(model, finetune_step_ret):
 

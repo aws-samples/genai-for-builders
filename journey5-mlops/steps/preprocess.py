@@ -1,7 +1,7 @@
 # Temporary preprocess step (to be changed with new dataset)
 import boto3
 from sagemaker.s3_utils import parse_s3_url
-import subprocess
+
 
 def preprocess(evaluation_data_path, output_data_path):
 

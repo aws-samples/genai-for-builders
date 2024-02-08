@@ -1,6 +1,7 @@
 import boto3
 from datetime import datetime
 
+
 def endpoint_exists(endpoint_name):
     endpoint_exist = False
 
