@@ -10,8 +10,12 @@ from fmeval.model_runners.sm_jumpstart_model_runner import JumpStartModelRunner
 from fmeval.eval_algorithms.factual_knowledge import FactualKnowledge, FactualKnowledgeConfig
 
 
-def evaluation(model_id, model_version, model_name, preprocess_step_ret, deploy_step_ret):
+def evaluation(model, preprocess_step_ret, deploy_step_ret):
     s3 = boto3.client("s3")
+
+    model_id = model["model_id"]
+    model_version = model["model_version"]
+    model_name = model["model_name"]
     
     # FMEval library needs three components:
     # - The evaluation dataset
