@@ -14,6 +14,9 @@ def endpoint_exists(endpoint_name):
             endpoint_exist = True
             break
 
+    if endpoint_exists is False:
+        client.delete_endpoint_config(EndpointConfigName=endpoint_name)
+
     return endpoint_exist
 
 def create_training_job_name(model_id):
