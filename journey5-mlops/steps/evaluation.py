@@ -2,7 +2,7 @@ import boto3
 import markdown
 from sagemaker.s3_utils import parse_s3_url
 from fmeval.data_loaders.data_config import DataConfig
-from fmeval.reporting.eval_output_cells import EvalOutputCell
+# from fmeval.reporting.eval_output_cells import EvalOutputCell
 from fmeval.constants import MIME_TYPE_JSONLINES
 from fmeval.model_runners.sm_jumpstart_model_runner import JumpStartModelRunner
 from fmeval.eval_algorithms.factual_knowledge import FactualKnowledge, FactualKnowledgeConfig
@@ -59,18 +59,19 @@ def evaluation(model, preprocess_step_ret, deploy_step_ret):
     # Save results to S3
     s3 = boto3.resource("s3")
     output_bucket, output_index = parse_s3_url(preprocess_step_ret["output_data_path"])
-    
-    html = markdown.markdown(str(EvalOutputCell(eval_output[0])))
-    file_index = (
-            output_index
-            + "/"
-            + model_name
-            + "_"
-            + eval_algo.eval_name
-            + ".html"
-    )
 
-    s3_object = s3.Object(bucket_name=output_bucket, key=file_index)
-    s3_object.put(Body=html)
+    #TODO: fix this for fmeval 1.0.0
+    # html = markdown.markdown(str(EvalOutputCell(eval_output[0])))
+    # file_index = (
+    #         output_index
+    #         + "/"
+    #         + model_name
+    #         + "_"
+    #         + eval_algo.eval_name
+    #         + ".html"
+    # )
+
+    # s3_object = s3.Object(bucket_name=output_bucket, key=file_index)
+    # s3_object.put(Body=html)
 
     return {"evaluation_output": eval_output_all, "model_name": model_name}
