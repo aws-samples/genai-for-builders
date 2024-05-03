@@ -1,2 +1,2 @@
 fmeval==0.4.0
-sagemaker==2.208.0
+sagemaker==2.218.0
